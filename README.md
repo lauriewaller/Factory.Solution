@@ -45,8 +45,19 @@ This application allows the user to track stylists and clients at their salon. U
       }
     }
 
-  9. To set up the database, run these commands in MySQL:
+  9. To set up the migration:
   
+dotnet tool install --global dotnet-ef
+ 
+run this command to create a migration in the root directory of the project:
+dotnet ef migrations add Initial
+this will create a new Migrations folder in the root directory. This folder now holds three files. We will use the scaffold that Entity provides for our migration. (When we ran this command, Entity looked at all our models and then created our migration based on that.)
+We are now ready to apply our migration:
+dotnet ef database update
+Check workbench to make sure successful.
+configured and migrated our code into our database. 
+
+
     CREATE SCHEMA `laurie_waller`;
     USE laurie_waller;
     CREATE TABLE `laurie_waller`.`stylists` (

@@ -7,16 +7,20 @@
 <h1>Dr. Sillystringz's Factory</h1>
 
 <h3>Engineers</h3>
-@foreach (Engineer engineer in Model)
-{
-  <li>@engineer.Name</li>
-}
+<ul>
+  @foreach (Engineer engineer in Model)
+  {
+    <li>@Html.ActionLink($"{engineer.Name}", "Details", "engineers", new { id = engineer.EngineerId })</li>
+  }
+</ul>
 
 <h3>Machines</h3>
-@foreach (Machine machine in ViewBag.machineModel)
-{
-  <li>@machine.Name</li>
-}
+<ul>
+  @foreach (Machine machine in ViewBag.machineModel)
+  {
+    <li>@Html.ActionLink($"{machine.Name}", "Details", "machines", new { id = machine.MachineId })</li>
+  }
+</ul>
 
 <p>@Html.ActionLink("Engineer Home", "Index", "engineers")</p>
 <p>@Html.ActionLink("Machine Home", "Index", "machines")</p>
