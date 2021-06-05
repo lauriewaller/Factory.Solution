@@ -10,21 +10,35 @@
 * ASP.NET Core MVC
 * ASP.NET Razor
 * Entity Framework Core
-* .NET 5
+* .NET 5.0
 * MySQL 
 * MySQL Workbench
 * CSS
 * HTML5
 
 ## Description
-This application allows the user to track stylists and clients at their salon. Users can add new stylists and clients, view all stylists and clients, view details for a stylist, and view clients who belong to a specific client. 
+This application implements a many-to-many relationship and allows the user to track machines and engineers at a factory. Users can:
+* Add new machine profiles and engineer profiles
+* View details for each machine or engineer 
+* View a list of all machines or all engineers
+* Search for engineers or machines
+* Delete or update each machine or engineer
+* Add, view, and delete machines connected with each engineer
+* Add, view, and delete engineers connected with each machine
 
 ## Database Structure 
 
-![image](https://user-images.githubusercontent.com/57472714/119250300-fe6a6f80-bb53-11eb-97e7-83deee75d5ef.png)
+![image](https://user-images.githubusercontent.com/57472714/120902302-6f019980-c5f4-11eb-892f-f55aec0df076.png)
 
-## Prerequesites
+## Prerequisites
 * [.Net Framework](https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-2.2.106-macos-x64-installer)
+* [MySQL](https://dev.mysql.com/downloads/file/?id=484914)
+* [MySQL WorkBench](https://dev.mysql.com/downloads/file/?id=484391)
+* dotnet script 
+  `dotnet tool install -g dotnet-script`
+* Entity Framework Core
+  `dotnet add package Microsoft.EntityFrameworkCore -v 5.0.0`
+  `dotnet add package Pomelo.EntityFrameworkCore.MySql -v 5.0.0-alpha.2`
 
 ## Setup/Installation Requirements
 
@@ -32,52 +46,24 @@ This application allows the user to track stylists and clients at their salon. U
   2. In the top righthand corner of the list of files, click the Code dropdown menu.
   3. Click on the clipboard icon to copy the URL to the GitHub repo.
   4. On your computer, open Terminal and navigate to the folder where you plan to clone the repo folder.
-  5. Type in `git clone` and then paste the URL you copied:
-      `git clone https://github.com/lauriewaller/Factory.Solution`. Press Enter.
-  6. One great application to open your files in is Visual Studio Code. To download VS Code, go to https://code.visualstudio.com/ and click on Download in the top righthand corner. From there, choose the download type necessary for your computer and follow the prompts.
-  7. After you have completed the VS Code download, return to Terminal. Once you've ensured you are still in the root directory of the folder you want to open, type `code .` and press Enter. This will open the application files in VS Code for you.
-
-  8. In the Factory directoy, create the file `appsettings.json`. Add the following code and save the file:
+  5. Type in `git clone` and then paste the URL you copied: `git clone https://github.com/lauriewaller/Factory.Solution`. Press Enter.
+  6. To open your files in [Visual Studio Code](https://code.visualstudio.com/),
+  navigate to the root directory of Factory.Solution in Terminal, type `code .`, and press Enter. This will open the application files in VS Code.
+  7. In the Factory directory, create the file `appsettings.json`. Add the following code and save the file:
 
     {
       "ConnectionStrings": {
         "DefaultConnection": "Server=localhost;Port=3306;database=laurie_waller;uid={INSERT_USERNAME};pwd={INSERT_PASSWORD};"
       }
     }
-
-  9. To set up the migration:
-  
-dotnet tool install --global dotnet-ef
- 
-run this command to create a migration in the root directory of the project:
-dotnet ef migrations add Initial
-this will create a new Migrations folder in the root directory. This folder now holds three files. We will use the scaffold that Entity provides for our migration. (When we ran this command, Entity looked at all our models and then created our migration based on that.)
-We are now ready to apply our migration:
-dotnet ef database update
-Check workbench to make sure successful.
-configured and migrated our code into our database. 
-
-
-    CREATE SCHEMA `laurie_waller`;
-    USE laurie_waller;
-    CREATE TABLE `laurie_waller`.`stylists` (
-    `StylistId` INT NOT NULL AUTO_INCREMENT,
-    `Name` VARCHAR(255) NULL,
-    `Schedule` VARCHAR(255) NULL,
-    PRIMARY KEY (`StylistId`)
-    );
-    CREATE TABLE `laurie_waller`.`clients` (
-    `ClientId` INT NOT NULL AUTO_INCREMENT,
-    `Name` VARCHAR(255) NULL,
-    `PhoneNumber` VARCHAR(255) NULL,
-    `Address` VARCHAR(255) NULL,
-    `StylistId` INT NULL DEFAULT 0,
-    PRIMARY KEY (`ClientId`)
-    );
-
   8. In Terminal, navigate to the Factory directory and type in `dotnet restore` and `dotnet build` to restore dependencies and compile code.
-
-  9. In Terminal, type in `dotnet run` to run the program. 
+  9. To set up the migration, ensure you're in the Factory directory and run the following commands:
+  
+  `dotnet tool install --global dotnet-ef`
+  `dotnet ef migrations add Initial` (Creates a migration directory in the root Factory directory)
+  `dotnet ef database update` (Applies the migration in Workbench)
+ 
+  10. In Terminal, type in `dotnet run` to run the program. 
 
 
 ## Known Bugs
