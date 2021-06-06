@@ -28,7 +28,7 @@ This application implements a many-to-many relationship and allows the user to t
 
 ## Database Structure 
 
-![image](https://user-images.githubusercontent.com/57472714/120902302-6f019980-c5f4-11eb-892f-f55aec0df076.png)
+![image](https://user-images.githubusercontent.com/57472714/120923419-4b396480-c683-11eb-8677-bb1ddea639b7.png)
 
 ## Prerequisites
 * [.Net Framework](https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-2.2.106-macos-x64-installer)
