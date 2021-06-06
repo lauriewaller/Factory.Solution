@@ -11,6 +11,14 @@
   <h3>No engineers have been added yet!</h3>
 }
 
+@using (Html.BeginForm())
+{
+  <p>
+  Find by name: @Html.TextBox("SearchString")
+  <input type="submit" value="Search" />
+</p>
+}
+
 <ul>
   @foreach (Engineer engineer in Model)
   {

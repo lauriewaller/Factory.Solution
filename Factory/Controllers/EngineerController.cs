@@ -17,9 +17,13 @@ namespace Factory.Controllers
       _db = db;
     }
 
-    public ActionResult Index()
+    public ActionResult Index(string searchString)
     {
       List<Engineer> model = _db.Engineers.ToList();
+      if (!String.IsNullOrEmpty(searchString))
+      {
+        model = _db.Engineers.Where(s => s.Name.Contains(searchString)).ToList();
+      }
       return View(model);
     }
 
@@ -60,6 +64,15 @@ namespace Factory.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost]
+    public ActionResult DeleteMachine(int joinId)
+    {
+      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
+      _db.EngineerMachine.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
     public ActionResult Edit(int id)
     {
       Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
@@ -93,7 +106,7 @@ namespace Factory.Controllers
         {
           if (model[i].EngineerId == engineer.EngineerId && model[i].MachineId == MachineId)
           {
-            return RedirectToAction("ErrorPage", "Machines");
+            return RedirectToAction("ErrorPage");
           }
         }
         _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = engineer.EngineerId, MachineId = MachineId });
@@ -101,6 +114,11 @@ namespace Factory.Controllers
       }
 
       return RedirectToAction("Details", new { id = engineer.EngineerId });
+    }
+
+    public ActionResult ErrorPage()
+    {
+      return View();
     }
 
   }
