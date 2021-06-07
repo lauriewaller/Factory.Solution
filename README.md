@@ -57,11 +57,10 @@ This application implements a many-to-many relationship and allows the user to t
       }
     }
   8. Still in the Factory directory, type in `dotnet restore` and `dotnet build` to restore dependencies and compile code.
-  9. To set up the migration, and run the following commands in the Factory directory:
+  9. To update the existing migration in your database, run the following commands in the Factory directory:
   
   * `dotnet tool install --global dotnet-ef`
-  * `dotnet ef migrations add Initial` (creates a migration directory in the root Factory directory)
-  * `dotnet ef database update` (applies the migration in Workbench)
+  * `dotnet ef database update` (applies the migration for you in Workbench)
  
   10. In the Factory directory, type in `dotnet run` to run the program. 
 
