@@ -17,7 +17,7 @@
 * HTML5
 
 ## Description
-This application implements a many-to-many relationship and allows the user to track machines and engineers at a factory. Users can:
+This application implements a many-to-many relationship and enables the user to track machines and engineers at a factory. Users can:
 * Add new machine profiles and engineer profiles
 * View details for each machine or engineer 
 * View a list of all machines or all engineers
